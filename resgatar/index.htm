@@ -1,0 +1,939 @@
+﻿<!DOCTYPE html><html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Oréal Paris</title>
+    <link href="../css2-1?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link href="css/flickity.min.css" rel="stylesheet">
+    <style>* {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            background-color: #f7f7f7;
+            line-height: 1.4;
+            color: #333;
+        }pa
+
+        .top-bar {
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            padding: 0px 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .top-bar .top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .top-bar .top-row i {
+            font-size: 30px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .top-bar .logo {
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #f0f0f0;
+            border-radius: 24px;
+            padding: 8px 16px;
+            height: 40px;
+            position: relative;
+        }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            background: none;
+            font-size: 14px;
+            color: #333;
+            outline: none;
+            padding-right: 56px;
+        }
+
+        .search-bar .search-text {
+            color: #666;
+            font-size: 14px;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .search-bar .search-icon {
+            position: absolute;
+            right: 4px;
+            background-color: #000000;
+            color: #fff;
+            width: 48px;
+            height: 32px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .search-bar .search-icon:hover {
+            background-color: #e67300;
+        }
+
+        .search-bar .search-icon i {
+            font-size: 16px;
+        }
+
+        .slider {
+            margin-top: 16px;
+            background-color: #fff;
+        }
+
+        .slider .carousel-cell {
+            width: 100%;
+            height: 100vw;
+            max-height: 500px;
+        }
+
+        .slider .carousel-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider .flickity-page-dots {
+            bottom: 16px;
+        }
+
+        .slider .flickity-page-dots .dot {
+            width: 8px;
+            height: 8px;
+            margin: 0 4px;
+            background-color: #fff;
+            opacity: 0.7;
+        }
+
+        .slider .flickity-page-dots .dot.is-selected {
+            opacity: 1;
+        }
+
+        .thumbnails {
+            margin: 12px 16px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .thumbnails::-webkit-scrollbar {
+            display: none;
+        }
+
+        .thumbnails .thumbnail {
+            width: 75px;
+            height: 75px;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            flex-shrink: 0;
+            border: 1px solid #e0e0e0;
+            transition: border-color 0.2s ease;
+        }
+
+        .thumbnails .thumbnail.active {
+            border: 2px solid #333;
+        }
+
+        .thumbnails .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .separator {
+            width: 100%;
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 16px 0;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 8px;
+        }
+
+        .rating .stars {
+            display: flex;
+            gap: 4px;
+        }
+
+        .rating .stars i {
+            color: #ffcc00;
+            font-size: 14px;
+        }
+
+        .rating .text {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .rating .heart {
+            font-size: 20px;
+            color: #333;
+            cursor: pointer;
+            margin-left: auto;
+            transition: color 0.2s ease;
+        }
+
+        .rating .heart:hover {
+            color: #ff4444;
+        }
+
+        .product-title {
+            margin: 16px 16px 8px;
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .product-description {
+            margin: 0 16px 16px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .product-info {
+            margin: 16px;
+        }
+
+        .product-info .feature {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .product-info .feature i {
+            font-size: 16px;
+            margin-right: 8px;
+            color: #28a745;
+        }
+
+        .product-info .price {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 10px 0;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .button-card-wrapper {
+            padding: 0 16px;
+            margin-bottom: 32px;
+        }
+
+        .product-info .button {
+            width: 100%;
+        }
+
+        .product-info .button button {
+            width: 100%;
+            height: 48px;
+            font-size: 16px;
+            font-weight: 500;
+            background-color: #000000;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .product-info .button button:hover {
+            background-color: #e67300;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 12px;
+            margin-top: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            height: 48px;
+            cursor: pointer;
+            background-color: #fff;
+        }
+
+        .card-header span {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .card-header i {
+            font-size: 12px;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+
+        .card-header i.rotate {
+            transform: rotate(180deg);
+        }
+
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .card-content.expanded {
+            max-height: 500px;
+        }
+
+        .card-content-inner {
+            padding: 16px;
+        }
+
+        .card-content-inner p {
+            font-size: 14px;
+            color: #666;
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .separator-card {
+            width: 100%;
+            height: 1px;
+            background-color: #e0e0e0;
+        }
+
+        .reviews-section {
+            padding: 24px 16px;
+        }
+
+        .reviews-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .reviews-summary {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .reviews-stars {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reviews-stars i {
+            color: #ffcc00;
+            font-size: 16px;
+        }
+
+        .reviews-rating {
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        .reviews-count {
+            font-size: 13px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .review-card {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .review-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .review-stars {
+            display: flex;
+            gap: 2px;
+        }
+
+        .review-stars i {
+            color: #ffcc00;
+            font-size: 14px;
+        }
+
+        .review-date {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .review-text {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .review-author {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .review-images {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            margin-bottom: 4px;
+        }
+
+        .review-images::-webkit-scrollbar {
+            display: none;
+        }
+
+        .review-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .read-more-button {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            height: 48px;
+            margin: 24px auto;
+            background-color: #000000;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .read-more-button:hover {
+            background-color: #e67300;
+        }
+
+        .footer {
+            background-color: #fff;
+            padding: 32px 16px;
+        }
+
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        .footer-logo img {
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .footer-links {
+            margin-bottom: 32px;
+        }
+
+        .footer-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #e0e0e0;
+            cursor: pointer;
+        }
+
+        .footer-link span {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .footer-link i {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .payment-methods {
+            margin-bottom: 32px;
+        }
+
+        .payment-methods-title {
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+            
+            margin-bottom: 16px;
+        }
+
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 0 16px;
+        }
+
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        .social-icons i {
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .social-icons i:hover {
+            color: #000000;
+        }
+
+        .footer-disclaimer {
+            background-color: #fff;
+            
+        }
+
+        .footer-disclaimer p {
+            font-size: 12px;
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            text-align: justify;
+        }
+
+        .footer-disclaimer p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (min-width: 768px) {
+            .slider .carousel-cell {
+                height: 400px;
+            }
+            
+            .button-card-wrapper {
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .payment-icons {
+                justify-content: center;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .footer-disclaimer {
+                padding: 32px;
+            }
+
+            .footer-disclaimer p {
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    </style>
+   
+
+  <script type="text/javascript">
+    window.hasMobileFirstExtension = true;
+  </script>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-row">
+            <i class="bi bi-list"></i>
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <i class="bi bi-cart"></i>
+        </div>
+        <div class="search-bar">
+            <span class="search-text">O que está buscando hoje?</span>
+            <input type="text" placeholder="">
+            <div class="search-icon">
+                <i class="bi bi-search"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="slider" data-flickity="{" wraparound":="" true,="" "prevnextbuttons":="" false,="" "pagedots":="" true}"="">
+        <div class="carousel-cell"><img src="images/fran1.webp" alt="Image 1"></div>
+        <div class="carousel-cell"><img src="images/fran2.webp" alt="Image 2"></div>
+        <div class="carousel-cell"><img src="images/fran3.webp" alt="Image 3"></div>
+        <div class="carousel-cell"><img src="images/fran4.webp" alt="Image 4"></div>
+    </div>
+
+    <div class="thumbnails">
+        <div class="thumbnail" onclick="selectSlide(0)"><img src="images/fran1.webp" alt="Thumbnail 1"></div>
+        <div class="thumbnail" onclick="selectSlide(1)"><img src="images/fran2.webp" alt="Thumbnail 2"></div>
+        <div class="thumbnail" onclick="selectSlide(2)"><img src="images/fran3.webp" alt="Thumbnail 3"></div>
+        <div class="thumbnail" onclick="selectSlide(2)"><img src="images/fran4.webp" alt="Thumbnail 4"></div>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="rating">
+        <div class="stars">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+        </div>
+        <div class="text">5.0 (de 487 avaliações)</div>
+        <i class="bi bi-heart heart"></i>
+    </div>
+
+    <div class="product-title">Kit Elseve Liso Dos Sonhos Super Alinhador Sh + Cond + Creme - Kit Promocional By L'Oréal Paris - Limitado</div>
+    <div class="product-description"> 4 Unidades 
+
+cod. L'Oréal-126936</div>
+
+    <div class="product-info">
+        <div class="feature"><i class="bi bi-check-circle"></i> Cabelos incrivelmente macios</div>
+        <div class="feature"><i class="bi bi-check-circle"></i> Essências únicas e sofisticadas</div>
+        <div class="feature"><i class="bi bi-check-circle"></i> Cor e durabilidade prolongada</div>
+        <div class="feature"><i class="bi bi-check-circle"></i> Qualidade Incriível</div>
+        <div class="price">R$ 00,00</div>
+        <div class="button-card-wrapper">
+            <div class="button">
+  <button onclick="window.location.href='https://pay.segurodecompra.shop/67fd4ffb7a312a086da252b7'">RESGATAR AGORA</button>
+</div>
+
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span>Descrição</span>
+                    <i class="bi bi-chevron-down rotate"></i>
+                </div>
+                <div class="card-content expanded">
+                    <div class="card-content-inner">
+                        <div class="separator-card"></div>
+                        <p><b>Kit Elseve Liso Dos Sonhos Super Alinhador</b><br><br>
+                        Para nós que somos obcecados por Elseve e amamos experimentar algo novo, o Kit Liso dos Sonhos veio aí! Estão preparados? São 3 Unidades e 1 Sérum Leave-In que arrasam no efeito vinílico e ultra brilho 3D, que te conquistarão com brilho e hidratação. Esses são os novos queridinhos da Elseve, pensados especialmente para despertar desejos e deliciosas sensações. O Kit Elseve dispensa produto suficiente para um cabelo de diva e entrega muito além de cabelos brilhosos. Sem contar que possuem poder hidratante e antioxidante, que tratam os fios a cada aplicação.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span>Como usar</span>
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-content-inner">
+                        <div class="separator-card"></div>
+                        <p>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kit Fran Ehlke</title>
+    <style>
+        /* Estilo para a estrutura */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        li::before {
+            content: "•"; /* Ponto central */
+            font-weight: bold;
+            margin-right: 10px;
+            color: black;
+        }
+        .highlight {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+
+
+    </p><div class="container">
+        <p>Aplique nos cabelos molhados, massageie suavemente e enxágue. Repita a aplicação se necessário.</p>
+    </div>
+<script defer="" src="../beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" data-cf-beacon="{" rayid":"8f8a79ab8f083875","version":"2024.10.5","r":1,"token":"9fb9d58664ee44a0b26be48badb7a76f","servertiming":{"name":{"cfextpri":true,"cfl4":true,"cfspeedbrain":true,"cfcachestatus":true}}}"="" crossorigin="anonymous"></script>
+
+
+<br><br>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span>Benefícios</span>
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-content-inner">
+                        <div class="separator-card"></div>
+                        <p></p><ul>
+            <li>A linha Elseve Liso dos Sonhos proporciona cabelos lisos, alinhados e sem frizz por 1 semana.</li>
+            <li>O Condicionador Efeito Liquid Hair sela e restaura a superfície da fibra para um liso com efeito liquid hair: desmaiado, com movimento superfluido e brilho intenso. Resultados que resistem até 5 lavagens¹.</li>
+            <li>¹Testes instrumentais, uso conjunto de shampoo, condicionador, creme para pentear e sérum vs shampoo clássico.</li>
+        </ul><p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="reviews-section">
+        <h2 class="reviews-title">Avaliações dos clientes</h2>
+        
+        <div class="reviews-summary">
+            <div class="reviews-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <span class="reviews-rating">5.0</span>
+            </div>
+            <div class="reviews-count">de 487 avaliações</div>
+        </div>
+
+        <div class="review-card">
+            <div class="review-card-header">
+                <div class="review-stars">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                </div>
+                <div class="review-date">enviado há 12 min atrás</div>
+            </div>
+            <div class="review-text">Produto excelente, hidratação profundas e delicadas. Recomendo muito, chegou em menos de 2 dias!</div>
+            <div class="review-author">por Christina Silva</div>
+            <div class="review-images">
+                <img src="images/1foto.png" alt="Avaliação 1" class="review-image">
+                <img src="images/2foto.png" alt="Avaliação 2" class="review-image">
+                <img src="images/3foto.png" alt="Avaliação 3" class="review-image">
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div class="review-card-header">
+                <div class="review-stars">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                </div>
+                <div class="review-date">enviado há 30 min atrás</div>
+            </div>
+            <div class="review-text">Adorei o produto! Cheiro muito agradável e os kits vieram completos</div>
+            <div class="review-author">por Leticia Santos</div>
+            <div class="review-images">
+                <img src="images/4foto.png" alt="Avaliação 1" class="review-image">
+                <img src="images/5foto.png" alt="Avaliação 2" class="review-image">
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div class="review-card-header">
+                <div class="review-stars">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                </div>
+                <div class="review-date">enviado há 1h atrás</div>
+            </div>
+            <div class="review-text">Super recomendo! Chegou em 3 dias e em perfeito estado!!!</div>
+            <div class="review-author">por Ana Clara</div>
+            <div class="review-images">
+                <img src="images/6foto.png" alt="Avaliação 1" class="review-image">
+            </div>
+        </div>
+
+        <button class="read-more-button">Ler mais avaliações</button>
+    </div>
+
+    
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="images/logo.png" alt="Logo Footer">
+        </div>
+        
+        <div class="footer-links">
+            <div class="footer-link">
+                <span>Sobre Loreal</span>
+                <i class="bi bi-chevron-down"></i>
+            </div>
+            <div class="footer-link">
+                <span>Atendimento</span>
+                <i class="bi bi-chevron-down"></i>
+            </div>
+            <div class="footer-link">
+                <span>Suporte</span>
+                <i class="bi bi-chevron-down"></i>
+            </div>
+            <div class="footer-link">
+                <span>Perfis</span>
+                <i class="bi bi-chevron-down"></i>
+            </div>
+        </div>
+
+        <div class="payment-methods">
+            <div class="payment-methods-title">Meios de Pagamento</div>
+            <div class="payment-icons">
+                <img src="images/pix.png" alt="Pagamento 8" class="payment-icon">
+            </div>
+        </div>
+
+       
+
+        <div class="social-icons">
+            <i class="bi bi-facebook"></i>
+            <i class="bi bi-instagram"></i>
+            <i class="bi bi-youtube"></i>
+            <i class="bi bi-twitter"></i>
+        </div>
+
+        <div class="footer-disclaimer">
+            <p>© 2025 L'Oréal Paris. Todos os direitos reservados.</p>
+            
+            <p> L'OREAL BRASIL COMERCIAL DE COSMETICOS LTDA
+CNPJ: 30.278.428/0001-61
+Proibida a reprodução total ou parcial. Preços e estoque sujeitos a alteração sem aviso prévio.</p>
+
+            <p>Todos os preços e condições deste site são válidos apenas para compras no site. Destacamos que os preços previstos no site prevalecem aos demais anunciados em outros meios de comunicação e sites de buscas. Em caso de divergência, o preço válido é o do carrinho de compras. Imagens meramente ilustrativas. Confira condições na sacola de compras.</p>
+        </div>
+    </footer>
+
+    <script src="js/flickity.pkgd.min.js"></script>
+    <script>
+        // Inicialize o Flickity com todas as opções necessárias
+const mainSlider = document.querySelector('.slider');
+const flkty = new Flickity(mainSlider, {
+    wrapAround: true,
+    prevNextButtons: false,
+    pageDots: true,
+    draggable: true,
+    fade: true,
+    adaptiveHeight: true,
+    cellAlign: 'left',
+    contain: true
+});
+
+// Função para selecionar o slide
+function selectSlide(index) {
+    flkty.select(index, false, true); // force flag set to true
+    updateThumbnails(index);
+}
+
+// Função para atualizar as miniaturas
+function updateThumbnails(index) {
+    document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === index);
+    });
+}
+
+// Listener para mudanças no slider
+flkty.on('change', function(index) {
+    updateThumbnails(index);
+});
+
+// Adicionar eventos de clique às miniaturas
+document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
+    thumb.addEventListener('click', () => selectSlide(index));
+});
+
+// Certificar-se que o primeiro slide está ativo inicialmente
+document.addEventListener('DOMContentLoaded', () => {
+    updateThumbnails(0);
+});
+
+        flktyMain.on('change', (index) => {
+            document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === index);
+            });
+        });
+
+        function toggleCard(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            content.classList.toggle('expanded');
+            icon.classList.toggle('rotate');
+        }
+        
+        
+    </script>
+    
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    var descricaoCard = document.querySelector('.button-card-wrapper .card');
+    if (descricaoCard) {
+        
+        var cardContent = descricaoCard.querySelector('.card-content');
+        cardContent.classList.add('expanded');
+
+        
+        var icon = descricaoCard.querySelector('.card-header i');
+        icon.classList.add('rotate');
+    }
+});
+</script>
+
+
+</body><script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpsh-oh'},{'server':'p3plzcpnl506306'},{'dcenter':'p3'},{'cp_id':'10061889'},{'cp_cl':'8'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='../signals/js/clients/scc-c2/scc-c2.min-1.js'></script></html>
